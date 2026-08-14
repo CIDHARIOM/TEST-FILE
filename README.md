@@ -17,6 +17,14 @@ npm run build
 npm run preview
 ```
 
+Create the portable single-file demo:
+
+```bash
+npm run build:demo
+```
+
+This generates `ANDOS-DEMO.html`, which contains the application code, styles, icons, and fonts in one file and can be opened directly in a modern browser.
+
 ## What is included
 
 - Guided home experience
