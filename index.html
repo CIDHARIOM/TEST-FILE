@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Projector-ready image viewer for the project artwork."
+    />
+    <title>Projector Image Viewer</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Projector viewer home">
+          <span class="brand-mark" aria-hidden="true">◐</span>
+          <span>Projector Viewer</span>
+        </a>
+        <button class="control-button" id="fullscreenButton" type="button">
+          <span aria-hidden="true">⛶</span>
+          <span>Projector mode</span>
+        </button>
+      </header>
+
+      <section class="intro" aria-labelledby="pageTitle">
+        <p class="eyebrow">A simple, upload-safe static project</p>
+        <h1 id="pageTitle">अंधेरे से रोशनी की ओर</h1>
+        <p class="intro-copy">
+          यह पेज image को project के local asset path से दिखाता है। किसी external
+          image link या encrypted file की जरूरत नहीं है।
+        </p>
+      </section>
+
+      <section class="artwork-card" aria-labelledby="artworkTitle">
+        <div class="artwork-frame">
+          <img
+            src="assets/images/file.png"
+            alt="दो ऊँची अंधेरी दीवारों के बीच रोशनी की ओर जाता हुआ व्यक्ति"
+            width="936"
+            height="1681"
+          />
+          <div class="artwork-caption">
+            <span id="artworkTitle">The Opening</span>
+            <span class="caption-divider" aria-hidden="true"></span>
+            <span>Local project asset</span>
+          </div>
+        </div>
+
+        <div class="details">
+          <p class="detail-label">Included artwork</p>
+          <h2>One image. One reliable path.</h2>
+          <p>
+            Image को <code>assets/images/file.png</code> में रखा गया है और इसी
+            relative path का इस्तेमाल page पर किया गया है। नीचे दिए link से
+            original image भी सीधे खोली जा सकती है।
+          </p>
+          <a class="image-link" href="assets/images/file.png" target="_blank" rel="noreferrer">
+            Open original image <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>Static HTML · GitHub Pages compatible</span>
+        <span>Press <kbd>F</kbd> for projector mode</span>
+      </footer>
+    </main>
+  </body>
+</html>

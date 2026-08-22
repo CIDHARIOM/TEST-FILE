@@ -1,0 +1,7 @@
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Local preview artifacts
+*.log

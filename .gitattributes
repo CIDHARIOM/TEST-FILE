@@ -1,0 +1,6 @@
+# Keep source files readable as text and image assets as binary.
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.png binary
