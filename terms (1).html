@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & Conditions — ANDOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- PWA & Branding Assets -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/andos-logo.png">
+  <link rel="icon" type="image/png" href="assets/andos-logo.png">
+  <meta name="theme-color" content="#111111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ANDOS">
+
+  <style>
+    :root {
+      --bg: #f5f5f7; --card-bg: #ffffff; --text-primary: #111111; --text-secondary: #6b7280;
+      --text-muted: #9ca3af; --border: #e5e7eb; --border-focus: #374151; --input-bg: #f9fafb;
+      --input-text: #111111; --btn-bg: #111111; --btn-text: #ffffff; --btn-hover: #333333;
+      --accent: #2563eb; --accent-hover: #1d4ed8; --accent-light: rgba(37,99,235,0.08);
+      --error-bg: #fef2f2; --error-text: #dc2626; --error-border: #fecaca;
+      --success-bg: #ecfdf5; --success-text: #059669;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08); --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+      --weak: #ef4444; --medium: #f59e0b; --strong: #10b981;
+      --gradient-start: #667eea; --gradient-end: #764ba2;
+      --particle-color: rgba(37,99,235,0.12);
+      --glow-color: rgba(37,99,235,0.04);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #000000; --card-bg: #0f0f0f; --text-primary: #f5f5f7; --text-secondary: #a1a1aa;
+        --text-muted: #71717a; --border: #27272a; --border-focus: #52525b; --input-bg: #141414;
+        --input-text: #f5f5f7; --btn-bg: #f5f5f7; --btn-text: #000000; --btn-hover: #e4e4e7;
+        --accent: #3b82f6; --accent-hover: #60a5fa; --accent-light: rgba(59,130,246,0.1);
+        --error-bg: rgba(220,38,38,0.1); --error-text: #f87171; --error-border: rgba(248,113,113,0.2);
+        --success-bg: rgba(5,150,105,0.1); --success-text: #34d399;
+        --shadow: 0 8px 30px rgba(0,0,0,0.5); --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+        --particle-color: rgba(59,130,246,0.18);
+        --glow-color: rgba(59,130,246,0.06);
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(245,245,247,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+    @media (prefers-color-scheme: dark) {
+      .navbar { background: rgba(0,0,0,0.85); }
+    }
+    .navbar.scrolled {
+      border-bottom-color: var(--border);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+    .nav-brand {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+      border-radius: 1px;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-cta {
+      padding: 10px 22px;
+      border-radius: 10px;
+      border: none;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-cta:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 130px 40px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(100,116,139,0.06) 0%, rgba(71,85,105,0.06) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero-content {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      animation: heroFadeIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(100,116,139,0.12);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .page-badge { color: #94a3b8; background: rgba(148,163,184,0.15); }
+    }
+    .page-badge svg { width: 14px; height: 14px; }
+    .page-hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .page-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .page-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* MAIN CONTAINER & LAYOUT */
+    .page-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* QUICK NAVIGATION TABS / PILLS */
+    .terms-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    .terms-nav-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .terms-nav-btn {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .terms-nav-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .terms-nav-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+    }
+    .action-btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      border-color: var(--border-focus);
+      color: var(--text-primary);
+      background: var(--input-bg);
+    }
+
+    /* SEARCH FILTER BAR */
+    .terms-search-bar {
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .terms-search-bar input {
+      width: 100%;
+      padding: 14px 16px 14px 44px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+    .terms-search-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+    }
+    .terms-search-bar svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* CONTENT CARD */
+    .terms-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    /* SECTION STYLES */
+    .terms-section {
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 100px;
+      transition: opacity 0.3s ease;
+    }
+    .terms-section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .terms-section h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.5px;
+    }
+    .section-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .terms-section p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .terms-section ul, .terms-section ol {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+    .terms-section li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+    .terms-section li strong {
+      color: var(--text-primary);
+    }
+
+    /* CALLOUT BOXES */
+    .warning-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(220,38,38,0.06), rgba(245,158,11,0.06));
+      border: 1.5px solid rgba(220,38,38,0.2);
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+    .warning-callout svg {
+      width: 22px;
+      height: 22px;
+      color: var(--error-text);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .warning-callout-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--error-text);
+      margin-bottom: 4px;
+    }
+    .warning-callout-text p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .warning-callout-text strong {
+      color: var(--text-primary);
+    }
+
+    .info-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--accent-light);
+      border: 1.5px solid rgba(37,99,235,0.2);
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+    .info-callout svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .info-callout-text p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .info-callout-text strong {
+      color: var(--text-primary);
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 60px 40px 40px;
+      border-top: 1px solid var(--border);
+      background: var(--card-bg);
+      margin-top: auto;
+    }
+    .footer-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand-section .footer-brand {
+      font-family: 'Sora', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .footer-brand-section p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* BACK TO TOP BUTTON */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 900;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .navbar { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .page-hero { padding: 100px 20px 40px; }
+      .page-hero h1 { font-size: 32px; }
+      .page-container { padding: 24px 20px 60px; }
+      .terms-content { padding: 24px 18px; border-radius: 16px; }
+      .terms-nav { flex-direction: column; align-items: stretch; gap: 12px; }
+      .terms-nav-group { justify-content: flex-start; }
+      .footer { padding: 40px 20px 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .navbar, .footer, .terms-nav, .terms-search-bar, .back-to-top { display: none !important; }
+      body { background: #fff; color: #000; }
+      .terms-content { border: none; box-shadow: none; padding: 0; }
+      .page-hero { padding: 20px 0; border: none; }
+      .page-hero h1 { -webkit-text-fill-color: initial; color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a class="nav-brand" href="index.html">
+      ANDOS
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="terms.html" class="active">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="index.html#support">Help Center</a>
+    </div>
+    <a href="index.html" class="nav-cta">
+      <span>Back to ANDOS</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Legal Agreement
+      </div>
+      <h1>Terms &amp;<br>Conditions</h1>
+      <p>Last updated: July 9, 2026. Please read these terms carefully before accessing or using the ANDOS ecosystem.</p>
+      <div class="page-meta">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Effective Date: July 9, 2026</span>
+        <span>•</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Governing Jurisdiction: Mumbai, India</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="page-container">
+    
+    <!-- NAVIGATION BAR & ACTIONS -->
+    <div class="terms-nav">
+      <div class="terms-nav-group">
+        <a href="#section-1" class="terms-nav-btn active">Terms of Service</a>
+        <a href="#section-5" class="terms-nav-btn">Platform Liability</a>
+        <a href="#section-10" class="terms-nav-btn">Refund Policy</a>
+        <a href="privacy.html" class="terms-nav-btn">Privacy Policy &rarr;</a>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button class="action-btn" onclick="window.print()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print Terms
+        </button>
+      </div>
+    </div>
+
+    <!-- SEARCH FILTER -->
+    <div class="terms-search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="termsSearch" placeholder="Search terms (e.g. refund, liability, accounts, gaming ID, payment)..." oninput="filterTerms(this.value)">
+    </div>
+
+    <!-- TERMS CONTENT CARD -->
+    <div class="terms-content" id="termsContainer">
+
+      <!-- SECTION 1 -->
+      <section class="terms-section" id="section-1">
+        <h2><span class="section-num">1</span> Acceptance of Terms</h2>
+        <p>By accessing, browsing, registering for, or using ANDOS ("the Platform", "we", "our", or "us"), you agree to be bound by these Terms of Service ("Terms"). These Terms constitute a legally binding agreement between you and ANDOS Technologies Pvt. Ltd.</p>
+        <p>If you do not agree to these Terms in their entirety, you must immediately cease all access and use of the Platform. We reserve the right to revise and amend these Terms at any time without prior written notice. Updated versions will be published on this page with an updated "Last Modified" timestamp. Continued use of the Platform following changes constitutes your full acceptance of the revised Terms.</p>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section class="terms-section" id="section-2">
+        <h2><span class="section-num">2</span> Eligibility &amp; User Criteria</h2>
+        <p>ANDOS is strictly intended for individuals who possess the legal capacity to enter into binding agreements. By accessing or registering an account, you represent and warrant that:</p>
+        <ul>
+          <li>You are at least 18 years of age or have reached the legal age of majority in your jurisdiction.</li>
+          <li>You possess the legal authority and capacity to enter into and abide by all obligations set forth in these Terms.</li>
+          <li>Your use of our digital services does not violate any applicable local, national, or international laws or regulations.</li>
+          <li>All information, credentials, and identity data you submit are truthful, complete, and accurate.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="terms-section" id="section-3">
+        <h2><span class="section-num">3</span> Account Registration &amp; Security</h2>
+        <p>Certain features and purchases on ANDOS necessitate the creation of a user profile. In managing your account, you agree to:</p>
+        <ul>
+          <li><strong>Confidentiality:</strong> Safeguard your account password, email access, and two-factor authentication tokens.</li>
+          <li><strong>Account Activity:</strong> Assume full legal and financial responsibility for all activities, orders, and inquiries executed through your account credentials.</li>
+          <li><strong>Unauthorized Access:</strong> Immediately notify the ANDOS security desk (<a href="/cdn-cgi/l/email-protection#0e7d7b7e7e617c7a4e6f606a617d206760" style="color: var(--accent); text-decoration: none;"><span class="__cf_email__" data-cfemail="9cefe9ececf3eee8dcfdf2f8f3efb2f5f2">[email&#160;protected]</span></a>) upon any suspected or actual compromise of your account.</li>
+          <li><strong>Accurate Details:</strong> Maintain current, valid email addresses and billing information for timely delivery of digital receipts and activation codes.</li>
+        </ul>
+        <p>ANDOS reserves the absolute right to suspend, freeze, or terminate accounts found engaging in suspicious or unauthorized actions without prior liability.</p>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section class="terms-section" id="section-4">
+        <h2><span class="section-num">4</span> Digital Marketplace, Products &amp; Pricing</h2>
+        <p>ANDOS operates an authorized aggregator marketplace facilitating the discovery, acquisition, and delivery of digital services, gaming credits, streaming subscriptions, and productivity software tools.</p>
+        <ul>
+          <li><strong>Intermediary Role:</strong> Unless explicitly noted otherwise, ANDOS acts as an authorized facilitator and intermediary between digital suppliers and verified buyers.</li>
+          <li><strong>Currency &amp; Taxes:</strong> All listed prices are displayed in Indian Rupees (₹) unless dynamically converted. Prices are subject to applicable taxes, gateway handling fees, and statutory levies where mandatory.</li>
+          <li><strong>Catalog Changes:</strong> Product catalog availability, package quantities, top-up denominations, and listed prices are subject to real-time adjustments without preceding notice.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 5 -->
+      <section class="terms-section" id="section-5">
+        <h2><span class="section-num">5</span> Zero Platform Liability &amp; User Responsibility</h2>
+        
+        <div class="warning-callout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <div class="warning-callout-text">
+            <h4>CRITICAL NOTICE — ZERO PLATFORM LIABILITY</h4>
+            <p><strong>ANDOS assumes 0% (zero percent) liability</strong> for transaction failures, delivery mismatches, or irrecoverable fund transfers caused by incorrect data supplied by the user. 100% of the responsibility for accurate data submission rests strictly upon the purchaser.</p>
+          </div>
+        </div>
+
+        <p>By placing an order on ANDOS, you explicitly acknowledge, agree, and covenant that:</p>
+        <ul>
+          <li><strong>User Data Accuracy:</strong> You bear sole responsibility for verifying all input identifiers prior to checkout, including but not limited to: Player Tags, Gaming IDs, Usernames, Phone Numbers, Recipient Emails, and Wallet Handles.</li>
+          <li><strong>Irreversible Fulfillment:</strong> Once digital fulfillment or API credit distribution has commenced towards the parameters entered by the user, orders become <strong>final, irreversible, and non-refundable</strong> under any circumstances.</li>
+          <li><strong>No Manual Cross-Checking:</strong> ANDOS does not manually inspect or guarantee the validity of recipient third-party IDs or recipient gamer profiles.</li>
+        </ul>
+
+        <div class="info-callout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div class="info-callout-text">
+            <p><strong>Server &amp; Infrastructure Disclaimer:</strong> ANDOS relies upon third-party cloud data centers, internet providers, and banking payment processors. While we target 99.9% availability, ANDOS shall not be held liable for temporary interruptions, third-party gateway timeouts, cloud outages, or delay factors outside our reasonable sphere of control.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6 -->
+      <section class="terms-section" id="section-6">
+        <h2><span class="section-num">6</span> Prohibited Activities &amp; Misuse</h2>
+        <p>Users shall not engage in any activity that harms, compromises, or disrupts the ANDOS infrastructure. Prohibited actions include:</p>
+        <ul>
+          <li>Executing fraudulent purchases, chargeback abuse, or utilizing unverified payment instruments.</li>
+          <li>Reverse-engineering, decompiling, or executing automated scripts/crawlers against the Platform's APIs.</li>
+          <li>Falsifying identification or claiming false affiliation with ANDOS or third-party brands.</li>
+          <li>Reselling, redistributing, or commercializing delivered vouchers without written enterprise licensing.</li>
+          <li>Submitting abusive, defamatory, or fraudulent support claims.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 7 -->
+      <section class="terms-section" id="section-7">
+        <h2><span class="section-num">7</span> Intellectual Property Rights</h2>
+        <p>All software architectures, UI designs, brand marks, logotypes, graphics, copy, and icons displayed across ANDOS are the exclusive intellectual property of ANDOS Technologies Pvt. Ltd. or its licensed partners.</p>
+        <p>Third-party game titles, brand marks (including Apple, Google, Microsoft, and publisher logos) remain the property of their respective trademark holders and are utilized strictly for descriptive compatibility and marketplace indexing purposes.</p>
+      </section>
+
+      <!-- SECTION 8 -->
+      <section class="terms-section" id="section-8">
+        <h2><span class="section-num">8</span> Limitation of Liability</h2>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, ANDOS AND ITS OFFICERS, DIRECTORS, AND EMPLOYEES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA LOSS, REPUTATIONAL INJURY, OR SERVICE SUSPENSION.</p>
+        <p>IN ALL SCENARIOS, ANDOS'S AGGREGATE MONETARY LIABILITY ARISING FROM ANY CLAIM LINKED TO A SPECIFIC TRANSACTION SHALL BE STRICTLY CAPPED AT THE NET AMOUNT RECEIVED BY ANDOS FOR THAT INDIVIDUAL TRANSACTION OVER THE PRECEDING THREE (3) MONTH PERIOD.</p>
+      </section>
+
+      <!-- SECTION 9 -->
+      <section class="terms-section" id="section-9">
+        <h2><span class="section-num">9</span> Governing Law &amp; Jurisdiction</h2>
+        <p>These Terms, as well as any disputes or claims originating from your use of the Platform, shall be governed by and interpreted pursuant to the statutory laws of the Republic of India.</p>
+        <p>Any legal proceedings, arbitrations, or judicial matters arising under these Terms shall be subject to the exclusive jurisdiction of the competent courts situated in <strong>Mumbai, Maharashtra, India</strong>.</p>
+      </section>
+
+      <!-- SECTION 10 -->
+      <section class="terms-section" id="section-10">
+        <h2><span class="section-num">10</span> Refund &amp; Cancellation Policy</h2>
+        <p>ANDOS maintains clear and equitable refund policies governed by the digital nature of our catalog:</p>
+        <ul>
+          <li><strong>Eligible Refunds:</strong> Refunds are processed if a verified digital code is defective upon initial issuance, or if delivery fails to complete within 24 hours of successful payment confirmation.</li>
+          <li><strong>Non-Refundable Categories:</strong> Once a digital activation code, redeem key, or direct top-up has been successfully dispatched to the parameters supplied by the buyer, it is strictly non-returnable and non-refundable.</li>
+          <li><strong>Filing Window:</strong> Valid claims must be submitted to the Help Center within seven (7) calendar days of transaction settlement.</li>
+          <li><strong>Processing Timelines:</strong> Approved refunds are credited back to the original source payment instrument within 3 to 7 business banking days.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 11 -->
+      <section class="terms-section" id="section-11">
+        <h2><span class="section-num">11</span> Legal Notice &amp; Contact Information</h2>
+        <p>For questions regarding these Terms &amp; Conditions, contract clarifications, or formal inquiries, please contact our legal desk:</p>
+        <ul>
+          <li><strong>Entity:</strong> ANDOS Technologies Pvt. Ltd.</li>
+          <li><strong>Legal Desk:</strong> <a href="/cdn-cgi/l/email-protection#b5c5c7dcc3d4d6ccf5d4dbd1dac69bdcdb" style="color: var(--accent); text-decoration: none;"><span class="__cf_email__" data-cfemail="502022392631332910313e343f237e393e">[email&#160;protected]</span></a></li>
+          <li><strong>Support Portal:</strong> <a href="/cdn-cgi/l/email-protection#b5c6c0c5c5dac7c1f5d4dbd1dac69bdcdb" style="color: var(--accent); text-decoration: none;"><span class="__cf_email__" data-cfemail="c6b5b3b6b6a9b4b286a7a8a2a9b5e8afa8">[email&#160;protected]</span></a></li>
+          <li><strong>Corporate Office:</strong> ANDOS Digital Square, BKC, Mumbai, Maharashtra 400051, India.</li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand-section">
+        <div class="footer-brand">ANDOS</div>
+        <p>A modern, category-driven digital services marketplace. Discover, explore, and access digital products through one unified ecosystem.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="index.html">Home</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how-it-works">How It Works</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="index.html">Social Media</a>
+        <a href="index.html">Gaming Credits</a>
+        <a href="index.html">Streaming Passes</a>
+        <a href="index.html">AI Software</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal &amp; Support</h4>
+        <a href="terms.html" style="color: var(--accent); font-weight: 600;">Terms &amp; Conditions</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="index.html#support">Help Center</a>
+        <a href="/cdn-cgi/l/email-protection#c7b4b2b7b7a8b5b387a6a9a3a8b4e9aea9">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>ANDOS &mdash; Your Digital Space. Built with care.</p>
+      <p>&copy; 2026 ANDOS. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Navbar scroll listener
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      const btt = document.getElementById('backToTop');
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      if (window.scrollY > 400) {
+        btt.classList.add('visible');
+      } else {
+        btt.classList.remove('visible');
+      }
+    });
+
+    // Search filter within terms
+    function filterTerms(query) {
+      const q = query.toLowerCase().trim();
+      const sections = document.querySelectorAll('.terms-section');
+      let matches = 0;
+
+      sections.forEach(sec => {
+        const text = sec.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          sec.style.display = 'block';
+          sec.style.opacity = '1';
+          matches++;
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    }
+
+    // Active tab highlight based on scroll position
+    const navBtns = document.querySelectorAll('.terms-nav-btn');
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.terms-section');
+      let currentId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 140;
+        if (window.scrollY >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+      navBtns.forEach(btn => {
+        const href = btn.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          if (href === '#' + currentId) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+      });
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3c775143c513f42',t:'MTc4OTY0MTI1NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

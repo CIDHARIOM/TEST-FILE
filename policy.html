@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — ANDOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- PWA & Branding Assets -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/andos-logo.png">
+  <link rel="icon" type="image/png" href="assets/andos-logo.png">
+  <meta name="theme-color" content="#111111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ANDOS">
+
+  <style>
+    :root {
+      --bg: #f5f5f7; --card-bg: #ffffff; --text-primary: #111111; --text-secondary: #6b7280;
+      --text-muted: #9ca3af; --border: #e5e7eb; --border-focus: #374151; --input-bg: #f9fafb;
+      --input-text: #111111; --btn-bg: #111111; --btn-text: #ffffff; --btn-hover: #333333;
+      --accent: #2563eb; --accent-hover: #1d4ed8; --accent-light: rgba(37,99,235,0.08);
+      --error-bg: #fef2f2; --error-text: #dc2626; --error-border: #fecaca;
+      --success-bg: #ecfdf5; --success-text: #059669;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08); --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+      --weak: #ef4444; --medium: #f59e0b; --strong: #10b981;
+      --gradient-start: #667eea; --gradient-end: #764ba2;
+      --particle-color: rgba(37,99,235,0.12);
+      --glow-color: rgba(37,99,235,0.04);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #000000; --card-bg: #0f0f0f; --text-primary: #f5f5f7; --text-secondary: #a1a1aa;
+        --text-muted: #71717a; --border: #27272a; --border-focus: #52525b; --input-bg: #141414;
+        --input-text: #f5f5f7; --btn-bg: #f5f5f7; --btn-text: #000000; --btn-hover: #e4e4e7;
+        --accent: #3b82f6; --accent-hover: #60a5fa; --accent-light: rgba(59,130,246,0.1);
+        --error-bg: rgba(220,38,38,0.1); --error-text: #f87171; --error-border: rgba(248,113,113,0.2);
+        --success-bg: rgba(5,150,105,0.1); --success-text: #34d399;
+        --shadow: 0 8px 30px rgba(0,0,0,0.5); --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+        --particle-color: rgba(59,130,246,0.18);
+        --glow-color: rgba(59,130,246,0.06);
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(245,245,247,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+    @media (prefers-color-scheme: dark) {
+      .navbar { background: rgba(0,0,0,0.85); }
+    }
+    .navbar.scrolled {
+      border-bottom-color: var(--border);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    }
+    .nav-brand {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+      border-radius: 1px;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+    .nav-links a.active { color: var(--accent); }
+
+    .nav-cta {
+      padding: 10px 22px;
+      border-radius: 10px;
+      border: none;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-cta:hover {
+      background: var(--btn-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 130px 40px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(37,99,235,0.06) 0%, rgba(16,185,129,0.06) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero-content {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      animation: heroFadeIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .page-badge svg { width: 14px; height: 14px; }
+    .page-hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 20px;
+    }
+    .page-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .page-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* MAIN CONTAINER & LAYOUT */
+    .page-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 40px 40px 80px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* QUICK NAVIGATION TABS / PILLS */
+    .terms-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+    .terms-nav-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .terms-nav-btn {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .terms-nav-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .terms-nav-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+    }
+    .action-btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .action-btn:hover {
+      border-color: var(--border-focus);
+      color: var(--text-primary);
+      background: var(--input-bg);
+    }
+
+    /* SEARCH FILTER BAR */
+    .terms-search-bar {
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .terms-search-bar input {
+      width: 100%;
+      padding: 14px 16px 14px 44px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+    .terms-search-bar input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
+    }
+    .terms-search-bar svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* CONTENT CARD */
+    .terms-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    /* SECTION STYLES */
+    .terms-section {
+      margin-bottom: 36px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      scroll-margin-top: 100px;
+      transition: opacity 0.3s ease;
+    }
+    .terms-section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .terms-section h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.5px;
+    }
+    .section-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .terms-section p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .terms-section ul, .terms-section ol {
+      margin-left: 20px;
+      margin-bottom: 16px;
+    }
+    .terms-section li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+    .terms-section li strong {
+      color: var(--text-primary);
+    }
+
+    /* CALLOUT BOXES */
+    .info-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--accent-light);
+      border: 1.5px solid rgba(37,99,235,0.2);
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+    .info-callout svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .info-callout-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .info-callout-text p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .info-callout-text strong {
+      color: var(--text-primary);
+    }
+
+    .shield-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(37,99,235,0.06));
+      border: 1.5px solid rgba(16,185,129,0.25);
+      border-radius: 14px;
+      margin: 18px 0;
+    }
+    .shield-callout svg {
+      width: 22px;
+      height: 22px;
+      color: var(--success-text);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .shield-callout-text h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--success-text);
+      margin-bottom: 4px;
+    }
+    .shield-callout-text p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 60px 40px 40px;
+      border-top: 1px solid var(--border);
+      background: var(--card-bg);
+      margin-top: auto;
+    }
+    .footer-grid {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand-section .footer-brand {
+      font-family: 'Sora', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .footer-brand-section p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* BACK TO TOP BUTTON */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 900;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .navbar { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .page-hero { padding: 100px 20px 40px; }
+      .page-hero h1 { font-size: 32px; }
+      .page-container { padding: 24px 20px 60px; }
+      .terms-content { padding: 24px 18px; border-radius: 16px; }
+      .terms-nav { flex-direction: column; align-items: stretch; gap: 12px; }
+      .terms-nav-group { justify-content: flex-start; }
+      .footer { padding: 40px 20px 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .navbar, .footer, .terms-nav, .terms-search-bar, .back-to-top { display: none !important; }
+      body { background: #fff; color: #000; }
+      .terms-content { border: none; box-shadow: none; padding: 0; }
+      .page-hero { padding: 20px 0; border: none; }
+      .page-hero h1 { -webkit-text-fill-color: initial; color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a class="nav-brand" href="index.html">
+      ANDOS
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html" class="active">Privacy Policy</a>
+      <a href="index.html#support">Help Center</a>
+    </div>
+    <a href="index.html" class="nav-cta">
+      <span>Back to ANDOS</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <header class="page-hero">
+    <div class="page-hero-content">
+      <div class="page-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Data Protection &amp; Trust
+      </div>
+      <h1>Privacy<br>Policy</h1>
+      <p>Last updated: July 9, 2026. Your privacy and personal data security are at the core of how ANDOS operates.</p>
+      <div class="page-meta">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Effective Date: July 9, 2026</span>
+        <span>•</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 256-bit SSL/TLS Encrypted</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="page-container">
+    
+    <!-- NAVIGATION BAR & ACTIONS -->
+    <div class="terms-nav">
+      <div class="terms-nav-group">
+        <a href="#section-1" class="terms-nav-btn active">Data Collection</a>
+        <a href="#section-4" class="terms-nav-btn">Data Security</a>
+        <a href="#section-5" class="terms-nav-btn">Your Rights</a>
+        <a href="#section-7" class="terms-nav-btn">Cookies</a>
+        <a href="terms.html" class="terms-nav-btn">&larr; Terms of Service</a>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button class="action-btn" onclick="window.print()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print Policy
+        </button>
+      </div>
+    </div>
+
+    <!-- SEARCH FILTER -->
+    <div class="terms-search-bar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="termsSearch" placeholder="Search policy (e.g. cookies, payment, security, retention, delete account)..." oninput="filterPolicy(this.value)">
+    </div>
+
+    <!-- PRIVACY CONTENT CARD -->
+    <div class="terms-content" id="policyContainer">
+
+      <!-- SECTION 1 -->
+      <section class="terms-section" id="section-1">
+        <h2><span class="section-num">1</span> Information We Collect</h2>
+        <p>ANDOS collects only the essential personal information required to authenticate user accounts, complete digital fulfillments, and prevent fraudulent transactions:</p>
+        <ul>
+          <li><strong>Direct Account Identifiers:</strong> Name, verified email address, phone number, and encrypted password hash.</li>
+          <li><strong>Transactional Metadata:</strong> Historical purchases, order identifiers, product SKUs, digital gift keys, delivery timestamps, and settlement amounts.</li>
+          <li><strong>Financial &amp; Payment Data:</strong> Payment details are securely processed via certified PCI-DSS Level 1 compliant gateways (including Stripe, Paytm, UPI networks). <em>ANDOS does not store or process raw CVV numbers or full cardholder details on our servers.</em></li>
+          <li><strong>Technical Diagnostics &amp; Telemetry:</strong> Anonymized IP addresses, browser engine variants, device models, operating systems, and localized network latency diagnostics.</li>
+          <li><strong>Inquiry &amp; Support Communications:</strong> Transcripts of interactions with our support desk, help tickets, and verification correspondences.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section class="terms-section" id="section-2">
+        <h2><span class="section-num">2</span> How We Use Your Information</h2>
+        <p>Every piece of data collected is processed strictly under legal, legitimate, and contractual bases:</p>
+        <ul>
+          <li><strong>Fulfillment &amp; Delivery:</strong> To instantly generate, deliver, and record purchased digital codes, gaming top-ups, and subscription vouchers.</li>
+          <li><strong>Transactional Messaging:</strong> To dispatch automated order confirmations, delivery receipts, balance alerts, and security alerts.</li>
+          <li><strong>Platform Security &amp; Fraud Prevention:</strong> To monitor anomalous purchasing patterns, mitigate automated bot operations, and protect buyer wallets.</li>
+          <li><strong>Product Improvements:</strong> To understand feature usage across our digital categories and streamline user checkout journeys.</li>
+          <li><strong>Statutory Compliance:</strong> To adhere to Indian financial accounting regulations, tax reporting, and lawful government requests.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="terms-section" id="section-3">
+        <h2><span class="section-num">3</span> Data Sharing &amp; Third-Party Disclosure</h2>
+        
+        <div class="shield-callout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <div class="shield-callout-text">
+            <h4>STRICT ZERO-SALE DATA PLEDGE</h4>
+            <p><strong>ANDOS does not sell, monetize, or rent your personal data</strong> to third-party advertisers, data aggregators, or marketing brokers. Never has, never will.</p>
+          </div>
+        </div>
+
+        <p>We share limited information solely with trusted infrastructure service partners necessary for service execution:</p>
+        <ul>
+          <li><strong>Payment Processors:</strong> Regulated payment gateways and UPI aggregators to execute billing authorization securely.</li>
+          <li><strong>Cloud &amp; CDN Infrastructure:</strong> Enterprise-grade hosting providers and content delivery networks with strict confidentiality and encryption pacts.</li>
+          <li><strong>Legal &amp; Regulatory Mandates:</strong> Where compelled by valid subpoena, court order, or statutory enforcement from Indian judicial authorities.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section class="terms-section" id="section-4">
+        <h2><span class="section-num">4</span> Data Security &amp; Encryption Architecture</h2>
+        <p>We deploy bank-grade technological defenses to secure customer records across their entire lifecycle:</p>
+        <ul>
+          <li><strong>End-to-End Encryption:</strong> All incoming and outgoing data transit is encrypted via 256-bit SSL/TLS protocol standards.</li>
+          <li><strong>PCI-DSS Compliance:</strong> All payment flows conform to Payment Card Industry Data Security Standards.</li>
+          <li><strong>Access Governance:</strong> Internal database access is restricted by granular least-privilege security tiers and multifactor authentication.</li>
+          <li><strong>Threat Detection:</strong> Real-time heuristic anomaly detection, rate-limiting shields, and intrusion mitigation software.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 5 -->
+      <section class="terms-section" id="section-5">
+        <h2><span class="section-num">5</span> Your Privacy Rights &amp; Choices</h2>
+        <p>Under applicable data protection frameworks, you are entitled to exercise comprehensive sovereignty over your personal data:</p>
+        <ul>
+          <li><strong>Right to Access:</strong> Request a complete export of your personal information stored within our databases.</li>
+          <li><strong>Right to Rectification:</strong> Promptly correct or update any inaccurate or obsolete profile information.</li>
+          <li><strong>Right to Erasure (Right to Be Forgotten):</strong> Request the permanent deletion of your account and personal identifiers, subject to legal auditing obligations.</li>
+          <li><strong>Consent Revocation:</strong> Opt out of non-essential promotional correspondence with a single click.</li>
+        </ul>
+        <div class="info-callout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div class="info-callout-text">
+            <h4>HOW TO EXERCISE YOUR RIGHTS</h4>
+            <p>To request data erasure or an archive export, simply contact our Data Protection Officer at <a href="/cdn-cgi/l/email-protection#9aeae8f3ecfbf9e3dafbf4fef5e9b4f3f4" style="color: var(--accent); font-weight: 600; text-decoration: none;"><span class="__cf_email__" data-cfemail="116163786770726851707f757e623f787f">[email&#160;protected]</span></a>. Requests are fulfilled within 7 business days.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6 -->
+      <section class="terms-section" id="section-6">
+        <h2><span class="section-num">6</span> Data Retention Policy</h2>
+        <p>We preserve personal information only as long as necessary to satisfy operational, security, and statutory requirements:</p>
+        <ul>
+          <li><strong>Active Accounts:</strong> User profile credentials remain stored for the active duration of the user account.</li>
+          <li><strong>Financial &amp; Tax Records:</strong> Transaction logs, GST invoices, and settlement records are retained for seven (7) years in compliance with statutory Indian fiscal governance.</li>
+          <li><strong>Transient Telemetry:</strong> Debug telemetry, server connection logs, and ephemeral session tokens are automatically rotated and purged after 90 days.</li>
+        </ul>
+      </section>
+
+      <!-- SECTION 7 -->
+      <section class="terms-section" id="section-7">
+        <h2><span class="section-num">7</span> Cookie Policy &amp; Tracking Technologies</h2>
+        <p>Cookies and browser local storage mechanisms enhance your browsing speed and session security on ANDOS:</p>
+        <ul>
+          <li><strong>Strictly Essential Cookies:</strong> Critical for user login persistence, shopping session state, and CSRF protection tokens.</li>
+          <li><strong>Preferences Cookies:</strong> Retain dark/light aesthetic choices, region filters, and visual preferences.</li>
+          <li><strong>Performance &amp; Diagnostics Cookies:</strong> Anonymized metrics on page response timings and interface performance.</li>
+        </ul>
+        <p><strong>Managing Cookies:</strong> You can manage, block, or delete cookies at any time via your browser settings (Chrome, Safari, Firefox, Edge). Note that disabling essential cookies may impact account sign-in functionality.</p>
+      </section>
+
+      <!-- SECTION 8 -->
+      <section class="terms-section" id="section-8">
+        <h2><span class="section-num">8</span> Minor Protection &amp; Age Policy</h2>
+        <p>ANDOS does not knowingly collect or solicit personal information from individuals under the age of 18 without verifiable parental or guardian consent. If we discover that personal data from a minor has been gathered without parental authorization, we will expeditiously expunge that information from our active records.</p>
+      </section>
+
+      <!-- SECTION 9 -->
+      <section class="terms-section" id="section-9">
+        <h2><span class="section-num">9</span> Policy Updates &amp; Notifications</h2>
+        <p>We may periodically update this Privacy Policy to reflect emerging legal standards, technical improvements, or operational evolutions. Any modifications will be posted here with an updated "Effective Date". In the event of material alterations affecting your rights, we will provide prominent notification across the platform.</p>
+      </section>
+
+      <!-- SECTION 10 -->
+      <section class="terms-section" id="section-10">
+        <h2><span class="section-num">10</span> Data Protection Officer &amp; Contact</h2>
+        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data processing practices, please reach out to our dedicated privacy desk:</p>
+        <ul>
+          <li><strong>Designation:</strong> Data Protection Officer (DPO)</li>
+          <li><strong>Privacy Email:</strong> <a href="/cdn-cgi/l/email-protection#8efefce7f8efedf7ceefe0eae1fda0e7e0" style="color: var(--accent); text-decoration: none;"><span class="__cf_email__" data-cfemail="bececcd7c8dfddc7fedfd0dad1cd90d7d0">[email&#160;protected]</span></a></li>
+          <li><strong>General Support:</strong> <a href="/cdn-cgi/l/email-protection#2c5f595c5c435e586c4d4248435f024542" style="color: var(--accent); text-decoration: none;"><span class="__cf_email__" data-cfemail="4c3f393c3c233e380c2d2228233f622522">[email&#160;protected]</span></a></li>
+          <li><strong>Registered Address:</strong> ANDOS Technologies Pvt. Ltd., BKC, Mumbai, Maharashtra 400051, India.</li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand-section">
+        <div class="footer-brand">ANDOS</div>
+        <p>A modern, category-driven digital services marketplace. Discover, explore, and access digital products through one unified ecosystem.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="index.html">Home</a>
+        <a href="index.html#categories">Categories</a>
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how-it-works">How It Works</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="index.html">Social Media</a>
+        <a href="index.html">Gaming Credits</a>
+        <a href="index.html">Streaming Passes</a>
+        <a href="index.html">AI Software</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal &amp; Support</h4>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="privacy.html" style="color: var(--accent); font-weight: 600;">Privacy Policy</a>
+        <a href="index.html#support">Help Center</a>
+        <a href="/cdn-cgi/l/email-protection#87f4f2f7f7e8f5f3c7e6e9e3e8f4a9eee9">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>ANDOS &mdash; Your Digital Space. Built with care.</p>
+      <p>&copy; 2026 ANDOS. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Navbar scroll listener
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      const btt = document.getElementById('backToTop');
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      if (window.scrollY > 400) {
+        btt.classList.add('visible');
+      } else {
+        btt.classList.remove('visible');
+      }
+    });
+
+    // Search filter within policy
+    function filterPolicy(query) {
+      const q = query.toLowerCase().trim();
+      const sections = document.querySelectorAll('.terms-section');
+
+      sections.forEach(sec => {
+        const text = sec.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          sec.style.display = 'block';
+          sec.style.opacity = '1';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    }
+
+    // Active tab highlight based on scroll position
+    const navBtns = document.querySelectorAll('.terms-nav-btn');
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.terms-section');
+      let currentId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 140;
+        if (window.scrollY >= top) {
+          currentId = sec.getAttribute('id');
+        }
+      });
+      navBtns.forEach(btn => {
+        const href = btn.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          if (href === '#' + currentId) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+      });
+    });
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3c7760eca233f42',t:'MTc4OTY0MTI5NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
